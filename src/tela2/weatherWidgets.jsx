@@ -19,7 +19,7 @@ const weatherImages = {
 
 function WeatherCard({ item, onCityFetched }) {
     const [weatherData, setWeatherData] = useState(null)
-    const apiKey = import.meta.env.VITE_API_WEATHER_KEY
+    const apiKey = "119dde4319f2e8d94757fb82841d6c91"
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${item.lat}&lon=${item.lon}&appid=${apiKey}&units=metric&lang=pt_br`
 
     useEffect(() => {

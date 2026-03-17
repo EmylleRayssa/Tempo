@@ -8,7 +8,7 @@ const LetsGo = ({ onOpenWidgets }) => {
     const lat = -9.6658;
     const lon = -35.7350;
 
-    const apiKey = import.meta.env.VITE_API_WEATHER_KEY
+    const apiKey = "119dde4319f2e8d94757fb82841d6c91"
     const urlApi = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=pt_br&appid=${apiKey}`
 
     const urlForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=pt_br&appid=${apiKey}`
