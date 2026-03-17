@@ -1,0 +1,644 @@
+@import './tela2/weatherWidgets.css';
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("/Fonts/SFPRODISPLAYREGULAR.OTF") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("/Fonts/SFPRODISPLAYMEDIUM.OTF") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("/Fonts/SFPRODISPLAYBOLD.OTF") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    background: rgba(46, 51, 90, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.mobile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.house-container {
+    width: 390px;
+    height: 390px;
+    position: absolute;
+    bottom: 60px;
+    z-index: 1;
+    transition: transform 0.35s ease;
+}
+
+.house-floating-anim {
+    width: 100%;
+    height: 100%;
+    animation: up-down 3s ease-in-out infinite;
+}
+
+@keyframes up-down {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+.t1-top-shell {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 390px;
+    max-width: 100vw;
+    z-index: 3;
+}
+
+.t1-status-bar {
+    height: 30px;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    box-sizing: border-box;
+}
+
+.t1-status-time {
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: 0.1px;
+    margin-left: 16px;
+}
+
+.t1-status-right {
+    width: 52px;
+    height: auto;
+    display: block;
+}
+
+.t1-header {
+    padding: 12px 16px 14px;
+    background: linear-gradient(180deg, #353573 0%, #36326f 100%);
+    border-bottom: 1px solid rgba(126, 121, 196, 0.35);
+}
+
+.t1-header-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.t1-back {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    cursor: default;
+}
+
+.t1-back-icon {
+    width: 12px;
+    height: 12px;
+    border-left: 2.5px solid #bcc2f4;
+    border-bottom: 2.5px solid #bcc2f4;
+    transform: rotate(45deg);
+    margin-left: 6px;
+}
+
+.t1-title {
+    margin: 0 0 0 6px;
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 47px;
+    line-height: 1;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: -0.4px;
+}
+
+.t1-more {
+    margin-left: auto;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 3px solid rgba(247, 249, 255, 0.95);
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.t1-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.t1-search-wrap {
+    height: 50px;
+    border-radius: 15px;
+    background: linear-gradient(180deg, rgba(40, 35, 88, 0.95) 0%, rgba(45, 42, 94, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    box-sizing: border-box;
+    box-shadow: 0 6px 14px rgba(24, 20, 56, 0.55) inset;
+}
+
+.t1-search-icon {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(184, 183, 220, 0.85);
+    border-radius: 50%;
+    margin-right: 8px;
+    position: relative;
+}
+
+.t1-search-icon::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    bottom: -5px;
+    width: 7px;
+    height: 2px;
+    border-radius: 4px;
+    background: rgba(184, 183, 220, 0.85);
+    transform: rotate(44deg);
+}
+
+.t1-search {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 400;
+    color: #e3e4ff;
+    padding: 0;
+}
+
+.t1-search::placeholder {
+    color: rgba(184, 183, 220, 0.82);
+}
+
+.weather {
+    align-items: center;
+    position: absolute;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 2;
+    transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+}
+
+.local {
+    font-size: 34px;
+    line-height: 41px;
+    letter-spacing: 0.37px;
+    font-weight: 400;
+    color: white;
+    font-family: "SF Pro Display", sans-serif;
+}
+
+.temp {
+    font-size: 96px;
+    line-height: 70px;
+    letter-spacing: 0.37px;
+    font-weight: 400;
+    color: white;
+    font-family: "SF Pro Display", sans-serif;
+}
+
+.info {
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.38px;
+    font-weight: 400;
+    text-transform: capitalize;
+    color: white;
+    font-family: "SF Pro Display", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.umidade {
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.38px;
+    font-weight: 400;
+    text-transform: capitalize;
+    color: white;
+    font-family: "SF Pro Display", sans-serif;
+    display: flex;
+    justify-content: space-between;
+}
+
+.clima {
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.38px;
+    font-weight: 400;
+    color: white;
+    opacity: 0.5;
+    font-family: "SF Pro Display", sans-serif;
+}
+
+/* Bottom Sheet */
+.bottom-sheet {
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+
+    /* AJUSTE AQUI: Diminuí a opacidade de 0.95 para 0.6 e 0.4 */
+    background: linear-gradient(180deg,
+            rgba(46, 30, 74, 0.6) 0%,
+            rgba(58, 38, 92, 0.4) 100%);
+
+    /* O efeito de vidro */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border-top-left-radius: 44px;
+    border-top-right-radius: 44px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+    padding: 8px 16px 0;
+    width: 398px;
+    height: 370px;
+    box-sizing: border-box;
+    left: 50%;
+
+    /* Cuidado: o JS sobrescreve esse transform se você não incluir o translateX lá */
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    user-select: none;
+    cursor: grab;
+}
+
+.bottom-sheet.smooth {
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.sheet-handle {
+    width: 48px;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 6px auto 10px;
+}
+
+.sheet-tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.sheet-tab {
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    padding-bottom: 6px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.sheet-tab:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.sheet-tab.active {
+    color: white;
+    border-bottom-color: rgba(255, 255, 255, 0.6);
+}
+
+.sheet-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.forecast-row {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.forecast-row::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+.forecast-card {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 0;
+    width: 65px;
+    min-width: 65px;
+    height: 140px;
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(72, 49, 107, 0.4);
+    cursor: pointer;
+    transition: transform 0.25s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 13px;
+}
+
+.forecast-card:hover {
+    transform: translateY(-4px);
+    background: rgba(90, 60, 140, 0.55);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.forecast-card:active {
+    transform: scale(0.95);
+}
+
+.forecast-card.active {
+    background: rgba(100, 70, 160, 0.7);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 12px rgba(130, 90, 200, 0.4);
+}
+
+/* .forecast-card.selected {
+    transform: translateY(-6px) scale(1.05);
+    background: rgba(120, 80, 180, 0.8);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 20px rgba(130, 90, 200, 0.5);
+} */
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeSlideUp 0.35s ease forwards;
+    opacity: 0;
+}
+
+.fc-time {
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 13px;
+    color: white;
+    font-weight: 500;
+}
+
+.fc-icon-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 15px;
+    position: relative;
+}
+
+.fc-chance {
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 11px;
+    color: #5cb8ff;
+}
+
+.fc-temp {
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 15px;
+    color: white;
+    font-weight: 400;
+}
+
+.sheet-bottom-nav {
+    margin: 0 -16px 0;
+    position: relative;
+    width: calc(100% + 32px);
+    height: 105px;
+    margin: 4px -16px 0;
+    flex-shrink: 0;
+}
+
+.sheet-bottom-nav-back {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(1px);
+    transform: scale(1.03);
+    transform-origin: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sheet-bottom-nav-bg {
+    position: absolute;
+    width: 100%;
+    top: 28px;
+    height: 73%;
+    object-fit: contain;
+    z-index: 1;
+}
+
+.nav-items {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 2;
+}
+
+.nav-space {
+    width: 74px;
+}
+
+.nav-icon {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.75;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-icon.active {
+    opacity: 1;
+}
+
+.nav-img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+}
+
+.nav-icon.nav-icon-list {
+    opacity: 100%;
+}
+
+.nav-img-list {
+    filter: brightness(2.00) contrast(2.0) drop-shadow(0 0 10px rgba(255, 255, 255, 0.28));
+}
+
+.nav-icon:hover {
+    transform: scale(1.14);
+    opacity: 1;
+}
+
+.nav-icon:active {
+    transform: scale(0.92);
+}
+
+.nav-icon:disabled {
+    cursor: default;
+}
+
+.nav-plus {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25), -2px -2px 6px rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nav-plus::before,
+.nav-plus::after {
+    content: '';
+    position: absolute;
+    background: #48319D;
+    border-radius: 2px;
+}
+
+.nav-plus::before {
+    width: 3px;
+    height: 24px;
+}
+
+.nav-plus::after {
+    width: 24px;
+    height: 3px;
+}
+
+.nav-plus:hover {
+    transform: translateX(-50%) scale(1.08);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.38);
+}
+
+.nav-plus:active {
+    transform: translateX(-50%) scale(0.95);
+}
+
+.nav-plus:disabled {
+    cursor: default;
+}
+
+@media (max-width: 470px) {
+    .t1-status-bar {
+        height: 28px;
+        padding: 0 12px;
+    }
+
+    .t1-status-right {
+        width: 48px;
+    }
+
+    .t1-header {
+        padding: 10px 12px 12px;
+    }
+
+    .t1-title {
+        font-size: 34px;
+    }
+
+    .t1-more {
+        width: 32px;
+        height: 32px;
+        border-width: 2px;
+    }
+
+    .t1-search-wrap {
+        height: 38px;
+        border-radius: 11px;
+    }
+
+    .t1-search {
+        font-size: 18px;
+    }
+}
